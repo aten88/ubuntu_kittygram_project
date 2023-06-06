@@ -1,0 +1,90 @@
+server {
+
+    server_name aten.sytes.net;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location / {
+        root   /var/www/taski;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+        }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/aten.sytes.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/aten.sytes.net/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = aten.sytes.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+    listen 80;
+    server_name aten.sytes.net;
+    return 404; # managed by Certbot
+
+}
+
+server {
+    server_name 84.201.153.152 aten-kittygramm.sytes.net;
+
+
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8001;
+    }
+
+
+
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8001;
+    }
+
+
+    location /media/ {
+        alias /var/www/kittygram/media/;
+    }
+
+    
+    location / {
+        root   /var/www/infra_sprint1;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/aten-kittygramm.sytes.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/aten-kittygramm.sytes.net/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+
+server {
+    if ($host = aten-kittygramm.sytes.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+    listen 80;
+    server_name 84.201.153.152 aten-kittygramm.sytes.net;
+    return 404; # managed by Certbot
+
+
+}

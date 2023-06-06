@@ -1,0 +1,5 @@
+IP: 84.201.153.152;
+name_taski: https://aten.sytes.net/;
+name_kittygram: https://aten-kittygramm.sytes.net/signin;
+login: yc-user;
+password: 1234;
