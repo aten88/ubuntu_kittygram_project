@@ -137,7 +137,8 @@ media/
 # FRONTEND
 
 # dependencies
-/node_modules
+frontend/node_modules
+backend/static_backend
 /.pnp
 .pnp.js
 
